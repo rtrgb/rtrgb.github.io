@@ -14,9 +14,9 @@
     <nav>
         <div class="nav-logo">Buzzi</div>
         <ul class="nav-links">
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -26,15 +26,36 @@
         <p>Photography</p>
     </section>
 
-    <!-- GALERIA -->
+
+    <!-- GALLERY -->
     <section id="gallery">
         <h2>Gallery</h2>
+
+        <!-- FILTERS -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="animals">Animals</button>
+            <button class="filter-btn" data-filter="nature">Nature</button>
+            <button class="filter-btn" data-filter="cars">Cars</button>
+            <button class="filter-btn" data-filter="sports">Sports</button>
+        </div>
+
+        <!-- GRID -->
         <div class="grid">
-            <img src="images/b1.jpg" alt="Photo" />
-            <img src="images/b2.jpg" alt="Photo" />
-            <img src="images/c1.jpg" alt="Photo" />
-            <img src="images/sqr1.jpg" alt="Photo" />
-            <img src="images/t1.jpg" alt="Photo" />
+            <div class="photo-item" data-category="animals" data-location="Zion National Park, Utah"
+                data-date="April 24th, 2026">
+                <img src="images/sqr1.jpg" alt="Squirrel" />
+            </div>
+            <div class="photo-item" data-category="animals" data-location="Haleiwa, Hawaii"
+                data-date="November 16th, 2025">
+                <img src="images/t1.jpg" alt="Turtle" />
+            </div>
+            <div class="photo-item" data-category="animals" data-location="Miami, Florida" data-date="May 1st, 2026">
+                <img src="images/c1.jpg" alt="Cat" />
+            </div>
+            <div class="photo-item" data-category="animals" data-location="Miami, Florida" data-date="May 1st, 2026">
+                <img src="images/b1.jpg" alt="Bird" />
+            </div>
         </div>
     </section>
 
@@ -53,7 +74,13 @@
     <!-- LIGHTBOX -->
     <div id="lightbox">
         <button id="lightbox-close">&times;</button>
-        <img id="lightbox-img" src="" alt="" />
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="" />
+            <div class="lightbox-info">
+                <span id="lightbox-location">📍</span>
+                <span id="lightbox-date"></span>
+            </div>
+        </div>
     </div>
 
     <script src="js/main.js"></script>

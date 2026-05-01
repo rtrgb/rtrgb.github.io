@@ -2,171 +2,171 @@
    RESET E BASE
 ======================== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  background-color: #0a0a0a;
-  color: #e0e0e0;
-  font-family: 'Georgia', serif;
-  line-height: 1.6;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
 }
 
 /* ========================
    NAVEGAÇÃO
 ======================== */
 nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 24px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-  background: linear-gradient(to bottom, #0a0a0a, transparent);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: linear-gradient(to bottom, #0a0a0a, transparent);
 }
 
 .nav-logo {
-  font-size: 1.4rem;
-  font-weight: bold;
-  letter-spacing: 4px;
-  color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: #ffffff;
 }
 
 .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 40px;
+    list-style: none;
+    display: flex;
+    gap: 40px;
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: #aaaaaa;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: color 0.3s;
+    text-decoration: none;
+    color: #aaaaaa;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
 }
 
 .nav-links a:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 /* ========================
    HERO
 ======================== */
 #hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #hero h1 {
-  font-size: 4rem;
-  font-weight: normal;
-  letter-spacing: 8px;
-  color: #ffffff;
-  text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: normal;
+    letter-spacing: 8px;
+    color: #ffffff;
+    text-transform: uppercase;
 }
 
 #hero p {
-  margin-top: 16px;
-  font-size: 0.9rem;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: #666666;
+    margin-top: 16px;
+    font-size: 0.9rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #666666;
 }
 
 /* ========================
    SEÇÕES GERAIS
 ======================== */
 section {
-  padding: 100px 48px;
-  max-width: 1200px;
-  margin: 0 auto;
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 section h2 {
-  font-size: 0.75rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #555555;
-  margin-bottom: 48px;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #555555;
+    margin-bottom: 48px;
 }
 
 /* ========================
    GALERIA
 ======================== */
 .grid {
-  columns: 3;
-  gap: 16px;
+    columns: 3;
+    gap: 16px;
 }
 
 .grid img {
-  width: 100%;
-  margin-bottom: 16px;
-  display: block;
-  cursor: pointer;
-  transition: opacity 0.3s;
+    width: 100%;
+    margin-bottom: 16px;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.3s;
 }
 
 .grid img:hover {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 /* ========================
    SOBRE
 ======================== */
 #sobre p {
-  max-width: 600px;
-  color: #aaaaaa;
-  font-size: 1.05rem;
-  line-height: 1.9;
+    max-width: 600px;
+    color: #aaaaaa;
+    font-size: 1.05rem;
+    line-height: 1.9;
 }
 
 /* ========================
    CONTATO
 ======================== */
 #contato p {
-  color: #aaaaaa;
-  font-size: 1rem;
-  letter-spacing: 1px;
+    color: #aaaaaa;
+    font-size: 1rem;
+    letter-spacing: 1px;
 }
 
 /* ========================
    LIGHTBOX (foto ampliada)
 ======================== */
 #lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 999;
-  justify-content: center;
-  align-items: center;
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
 }
 
-#lightbox.ativo {
+#lightbox.active {
   display: flex;
 }
 
 #lightbox img {
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 100%;
+  max-height: 85vh;
   object-fit: contain;
 }
 
-#lightbox-fechar {
+#lightbox-close {
   position: absolute;
   top: 24px;
   right: 32px;
@@ -175,4 +175,65 @@ section h2 {
   cursor: pointer;
   background: none;
   border: none;
+}
+
+/* ========================
+   FILTERS
+======================== */
+.filters {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: none;
+    border: 1px solid #333333;
+    color: #666666;
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.filter-btn.active {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* ========================
+   PHOTO ITEM
+======================== */
+.photo-item {
+    margin-bottom: 16px;
+    break-inside: avoid;
+}
+
+/* ========================
+   LIGHTBOX INFO
+======================== */
+.lightbox-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+}
+
+.lightbox-info {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+    opacity: 0.4;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
 }
