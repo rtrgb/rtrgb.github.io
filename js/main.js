@@ -1,40 +1,92 @@
 // ========================
+// FADE IN AO ROLAR
+// ========================
+const observer = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.photo-item').forEach(function (item) {
+  observer.observe(item);
+});
+
+// ========================
 // LIGHTBOX
 // ========================
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxLocation = document.getElementById('lightbox-location');
 const lightboxDate = document.getElementById('lightbox-date');
+const lightboxCounter = document.getElementById('lightbox-counter');
 const closeBtn = document.getElementById('lightbox-close');
+const prevBtn = document.getElementById('lightbox-prev');
+const nextBtn = document.getElementById('lightbox-next');
 
-// Abre o lightbox ao clicar em qualquer foto
-document.querySelector('.grid').addEventListener('click', function (e) {
-  const item = e.target.closest('.photo-item');
-  if (!item) return;
+let currentIndex = 0;
+let visibleItems = [];
 
+function getVisibleItems() {
+  return Array.from(document.querySelectorAll('.photo-item')).filter(
+    item => item.style.display !== 'none'
+  );
+}
+
+function showPhoto(index) {
+  currentIndex = index;
+  const item = visibleItems[currentIndex];
   const img = item.querySelector('img');
   lightboxImg.src = img.src;
   lightboxLocation.textContent = '📍 ' + item.dataset.location;
   lightboxDate.textContent = item.dataset.date;
+  lightboxCounter.textContent = (currentIndex + 1) + ' / ' + visibleItems.length;
+}
+
+document.querySelector('.grid').addEventListener('click', function (e) {
+  const item = e.target.closest('.photo-item');
+  if (!item) return;
+
+  visibleItems = getVisibleItems();
+  const index = visibleItems.indexOf(item);
+  showPhoto(index);
   lightbox.classList.add('active');
 });
 
-// Fecha ao clicar no X
+prevBtn.addEventListener('click', function (e) {
+  e.stopPropagation();
+  currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+  showPhoto(currentIndex);
+});
+
+nextBtn.addEventListener('click', function (e) {
+  e.stopPropagation();
+  currentIndex = (currentIndex + 1) % visibleItems.length;
+  showPhoto(currentIndex);
+});
+
 closeBtn.addEventListener('click', function () {
   lightbox.classList.remove('active');
 });
 
-// Fecha ao clicar fora da foto
 lightbox.addEventListener('click', function (e) {
   if (e.target === lightbox) {
     lightbox.classList.remove('active');
   }
 });
 
-// Fecha com ESC
 document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') {
-    lightbox.classList.remove('active');
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') lightbox.classList.remove('active');
+  if (e.key === 'ArrowLeft') {
+    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+    showPhoto(currentIndex);
+  }
+  if (e.key === 'ArrowRight') {
+    currentIndex = (currentIndex + 1) % visibleItems.length;
+    showPhoto(currentIndex);
   }
 });
 
@@ -46,7 +98,6 @@ const photoItems = document.querySelectorAll('.photo-item');
 
 filterBtns.forEach(function (btn) {
   btn.addEventListener('click', function () {
-    // Atualiza botão ativo
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 

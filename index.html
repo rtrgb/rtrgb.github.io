@@ -17,6 +17,7 @@
         <ul class="nav-links">
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#gear">Gear</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -60,6 +61,25 @@
         </div>
     </section>
 
+    <!-- GEAR -->
+    <section id="gear">
+        <h2>Gear</h2>
+        <div class="gear-grid">
+            <div class="gear-item">
+                <h3>Camera</h3>
+                <p>Canon EOS R50</p>
+            </div>
+            <div class="gear-item">
+                <h3>Lenses</h3>
+                <p>Canon RF 100–400mm<br>Canon RF 50mm f/1.8<br>Canon RF 18–45mm</p>
+            </div>
+            <div class="gear-item">
+                <h3>Accessories</h3>
+                <p>Peak Design Capture Clip<br>Manfrotto 190XPRO Tripod</p>
+            </div>
+        </div>
+    </section>
+
     <!-- SOBRE -->
     <section id="about">
         <h2>About</h2>
@@ -75,9 +95,12 @@
     <!-- LIGHTBOX -->
     <div id="lightbox">
         <button id="lightbox-close">&times;</button>
+        <button class="lightbox-nav" id="lightbox-prev">&#8592;</button>
+        <button class="lightbox-nav" id="lightbox-next">&#8594;</button>
         <div class="lightbox-content">
             <img id="lightbox-img" src="" alt="" />
             <div class="lightbox-info">
+                <span id="lightbox-counter"></span>
                 <span id="lightbox-location"></span>
                 <span id="lightbox-date"></span>
             </div>
