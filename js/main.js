@@ -3,7 +3,7 @@
 // ========================
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
-const fechar = document.getElementById('lightbox-fechar');
+const fechar = document.getElementById('lightbox-close');
 
 // Abre o lightbox ao clicar em qualquer foto da galeria
 document.querySelector('.grid').addEventListener('click', function (e) {
