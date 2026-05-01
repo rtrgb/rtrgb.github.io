@@ -12,10 +12,10 @@ html {
 }
 
 body {
-    background-color: #0a0a0a;
-    color: #e0e0e0;
-    font-family: 'Georgia', serif;
-    line-height: 1.6;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
 }
 
 /* ========================
@@ -34,10 +34,11 @@ nav {
 }
 
 .nav-logo {
-    font-size: 1.4rem;
-    font-weight: bold;
-    letter-spacing: 4px;
-    color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  color: #ffffff;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .nav-links {
@@ -72,11 +73,12 @@ nav {
 }
 
 #hero h1 {
-    font-size: 4rem;
-    font-weight: normal;
-    letter-spacing: 8px;
-    color: #ffffff;
-    text-transform: uppercase;
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 8px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 #hero p {
