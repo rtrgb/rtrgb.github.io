@@ -96,12 +96,19 @@ document.addEventListener('keydown', function (e) {
 const filterBtns = document.querySelectorAll('.filter-btn');
 const photoItems = document.querySelectorAll('.photo-item');
 
+const activeCategories = new Set(
+  Array.from(photoItems).map(item => item.dataset.category)
+);
+
 filterBtns.forEach(function (btn) {
+  const filter = btn.dataset.filter;
+  if (filter !== 'all' && !activeCategories.has(filter)) {
+    btn.style.display = 'none';
+  }
+
   btn.addEventListener('click', function () {
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
 
     photoItems.forEach(function (item) {
       if (filter === 'all' || item.dataset.category === filter) {
