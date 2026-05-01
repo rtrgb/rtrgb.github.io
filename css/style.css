@@ -107,6 +107,36 @@ section h2 {
 }
 
 /* ========================
+   FILTERS
+======================== */
+.filters {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    color: #555555;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s;
+}
+
+.filter-btn:hover {
+    color: #aaaaaa;
+}
+
+.filter-btn.active {
+    color: #ffffff;
+}
+
+/* ========================
    GALERIA
 ======================== */
 .grid {
@@ -164,7 +194,7 @@ section h2 {
 /* ========================
    SOBRE
 ======================== */
-#sobre p {
+#about p {
     max-width: 600px;
     color: #aaaaaa;
     font-size: 1.05rem;
@@ -174,7 +204,7 @@ section h2 {
 /* ========================
    CONTATO
 ======================== */
-#contato p {
+#contact p {
     color: #aaaaaa;
     font-size: 1rem;
     letter-spacing: 1px;
