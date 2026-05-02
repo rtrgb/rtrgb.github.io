@@ -111,14 +111,48 @@ filterBtns.forEach(function (btn) {
     btn.classList.add('active');
 
     photoItems.forEach(function (item) {
-      if (filter === 'all' || item.dataset.category === filter) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
+      item.style.opacity = '0';
     });
+
+    setTimeout(function () {
+      photoItems.forEach(function (item) {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      requestAnimationFrame(function () {
+        photoItems.forEach(function (item) {
+          if (item.style.display !== 'none') {
+            item.style.opacity = '1';
+          }
+        });
+      });
+    }, 200);
   });
 });
+
+// ========================
+// SWIPE NO LIGHTBOX
+// ========================
+let touchStartX = 0;
+
+lightbox.addEventListener('touchstart', function (e) {
+  touchStartX = e.changedTouches[0].clientX;
+}, { passive: true });
+
+lightbox.addEventListener('touchend', function (e) {
+  const delta = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(delta) < 50) return;
+  if (delta < 0) {
+    currentIndex = (currentIndex + 1) % visibleItems.length;
+  } else {
+    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+  }
+  showPhoto(currentIndex);
+}, { passive: true });
 
 // ========================
 // NAVEGAÇÃO ao rolar
