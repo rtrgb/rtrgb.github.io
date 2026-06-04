@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://res.cloudinary.com/dtvmwampt/image/upload/v1777678237/sqr1_ey31jn.jpg",
+    "alt": "Squirrel",
+    "category": "animals",
+    "location": "Zion National Park, Utah",
+    "date": "April 24th, 2026"
+  },
+  {
+    "url": "https://res.cloudinary.com/dtvmwampt/image/upload/v1777678237/t1_ud9mnt.jpg",
+    "alt": "Turtle",
+    "category": "animals",
+    "location": "Haleiwa, Hawaii",
+    "date": "November 16th, 2025"
+  },
+  {
+    "url": "https://res.cloudinary.com/dtvmwampt/image/upload/v1777678237/c1_umxeuh.jpg",
+    "alt": "Cat",
+    "category": "animals",
+    "location": "Miami, Florida",
+    "date": "May 1st, 2026"
+  },
+  {
+    "url": "https://res.cloudinary.com/dtvmwampt/image/upload/v1777678237/b1_hvbd3w.jpg",
+    "alt": "Bird",
+    "category": "animals",
+    "location": "Miami, Florida",
+    "date": "May 1st, 2026"
+  },
+  {
+    "url": "https://res.cloudinary.com/dtvmwampt/image/upload/v1777678353/jp1_fmk1e1.jpg",
+    "alt": "Surfing",
+    "category": "sports",
+    "location": "Balneário Camboriú, Santa Catarina",
+    "date": "August 31st, 2025"
+  }
+]
