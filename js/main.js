@@ -1,6 +1,3 @@
-// ========================
-// CARREGAR FOTOS DO JSON
-// ========================
 fetch('photos.json')
   .then(function (res) { return res.json(); })
   .then(function (photos) {
@@ -22,9 +19,9 @@ fetch('photos.json')
 
 function initGallery() {
 
-  // ========================
+
   // FADE IN AO ROLAR
-  // ========================
+
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
@@ -38,9 +35,9 @@ function initGallery() {
     observer.observe(item);
   });
 
-  // ========================
+
   // LIGHTBOX
-  // ========================
+
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxLocation = document.getElementById('lightbox-location');
@@ -114,9 +111,8 @@ function initGallery() {
     }
   });
 
-  // ========================
   // FILTERS
-  // ========================
+
   const filterBtns = document.querySelectorAll('.filter-btn');
   const photoItems = document.querySelectorAll('.photo-item');
 
@@ -158,9 +154,9 @@ function initGallery() {
     });
   });
 
-  // ========================
-  // SWIPE NO LIGHTBOX
-  // ========================
+
+  // swipe do lightbox
+
   let touchStartX = 0;
 
   lightbox.addEventListener('touchstart', function (e) {
@@ -180,9 +176,7 @@ function initGallery() {
 
 }
 
-// ========================
-// NAVEGAÇÃO ao rolar
-// ========================
+//  rolando e navegando
 window.addEventListener('scroll', function () {
   const nav = document.querySelector('nav');
   if (window.scrollY > 50) {
