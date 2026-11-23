@@ -102,23 +102,6 @@ function createFlipWord(el, word1, word2, options) {
 }
 
 
-// LOGO DA NAV: "Buzzi" vira "Photos" no hover/foco
-
-(function () {
-  const logo = document.querySelector('.nav-logo');
-  if (!logo || !('animate' in Element.prototype)) return;
-  const word = logo.querySelector('.nav-logo-word');
-  const flip = createFlipWord(word, 'Buzzi', 'Photos', { duration: 380, stagger: 40 });
-
-  logo.addEventListener('mouseenter', flip.play);
-  logo.addEventListener('mouseleave', flip.reverse);
-  logo.addEventListener('focus', function () {
-    if (logo.matches(':focus-visible')) flip.play();
-  });
-  logo.addEventListener('blur', flip.reverse);
-})();
-
-
 // INTRO: "Gabriel" vira "Buzzi" e a cortina sobe, a cada carregamento
 
 (function () {

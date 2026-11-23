@@ -6,16 +6,16 @@ Portfolio de fotografia de Gabriel Buzzi ("Buzzi Photos"), publicado via GitHub 
 
 Site estático puro: HTML + CSS + JavaScript vanilla. Sem build, sem framework, sem dependências, sem testes.
 
-- `index.html`: página única (fundo aurora, intro, nav, gallery/carrossel, about, gear, contact, lightbox, footer)
+- `index.html`: página única (fundo aurora, intro, nav com o nome "Gabriel Buzzi / Photography", gallery/carrossel, about, gear, contact, lightbox, footer)
 - `css/style.css`: todos os estilos, dark theme. Cores em tokens no `:root` (`--bg`, `--text`, `--muted`, `--label`, `--faint`). Breakpoints mobile em `768px` e `480px` perto do fim do arquivo
 - `js/aurora.js`: fundo animado em WebGL (port do "Aurora Flow" da componentry.dev), canvas fixo atrás da página
-- `js/intro.js`: efeito "flipping word swap" (letras girando). Usado no intro ("Gabriel" → "Buzzi", a cada carregamento) e no logo da nav ("Buzzi" → "Photos" no hover)
+- `js/intro.js`: efeito "flipping word swap" (letras girando). Usado no intro ("Gabriel" → "Buzzi", a cada carregamento)
 - `js/filmstrip.js`: carrossel plano em DOM (foto central em destaque, vizinhas menores e escurecidas, loop infinito, arrastar/trackpad/teclado, clique amplia). Expõe `createFilmstrip()`
 - `js/main.js`: carrega `photos.json`, monta o carrossel (legenda, contador, filtros, teclado) e, se ele não carregar, cai para a grade + lightbox antigos
 - `js/carousel.js`: antigo carrossel com lente de vidro em WebGL; não é mais carregado pelo `index.html`
 - `photos.json`: fonte dos dados da galeria
 - `favicon/`: ícones gerados com a fonte Cormorant Garamond
-- Fontes: Google Fonts, Cormorant Garamond (títulos) e Inter (texto)
+- Fontes: Google Fonts, Cormorant Garamond (títulos) e Jost (texto)
 
 ## Rodar localmente
 

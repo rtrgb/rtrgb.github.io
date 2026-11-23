@@ -12,7 +12,7 @@
     --line-strong: rgba(255, 255, 255, 0.55);
 
     --serif: 'Cormorant Garamond', serif;
-    --sans: 'Inter', sans-serif;
+    --sans: 'Jost', sans-serif;
 
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --gutter: 48px;
@@ -148,7 +148,7 @@ footer {
 }
 
 /* ========================
-   FLIPPING WORD (intro e logo)
+   FLIPPING WORD (intro)
 ======================== */
 .flip-word {
     display: inline-grid;
@@ -196,14 +196,37 @@ nav.scrolled {
     backdrop-filter: blur(14px);
 }
 
-.nav-logo {
-    font-family: var(--serif);
-    font-size: 1.4rem;
-    font-weight: 400;
-    letter-spacing: 4px;
+/* nome no canto superior esquerdo */
+.nav-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 0;
     color: var(--strong);
     text-decoration: none;
-    padding: 8px 0;
+}
+
+.brand-name {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 1.35rem;
+    line-height: 1.1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.brand-sub {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.3s;
+}
+
+.nav-brand:hover .brand-sub,
+.nav-brand:focus-visible .brand-sub {
+    color: var(--strong);
 }
 
 .nav-links {
@@ -408,7 +431,7 @@ section h2 {
     }
 }
 
-/* barra inferior: nome, navegação e filtros */
+/* barra inferior: navegação e filtros */
 .stage-bar {
     position: absolute;
     z-index: 20;
@@ -422,26 +445,8 @@ section h2 {
     transition: opacity 0.6s ease;
 }
 
-.stage-name h1 {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: 1.75rem;
-    line-height: 1.1;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--strong);
-}
-
-.stage-name p {
-    margin-top: 6px;
-    font-size: 0.7rem;
-    font-weight: 400;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--muted);
-}
-
 .stage-nav {
+    grid-column: 2;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -520,12 +525,51 @@ section h2 {
     opacity: 0;
 }
 
+/* convite para rolar até o About */
+.stage-scroll {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--label);
+    transition: color 0.3s;
+}
+
+.stage-scroll svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.5s var(--ease-out);
+}
+
+.stage-scroll:hover {
+    color: var(--strong);
+}
+
+.stage-scroll:hover svg {
+    transform: translateY(3px);
+}
+
 /* ========================
    FILTERS
 ======================== */
 .filters {
+    grid-column: 1;
+    grid-row: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 4px 20px;
 }
@@ -574,6 +618,7 @@ section h2 {
 }
 
 .stage.is-fallback .stage-carousel,
+.stage.is-fallback .stage-scroll,
 .stage.is-fallback .stage-caption,
 .stage.is-fallback .stage-nav,
 .stage.is-fallback .stage-close {
@@ -582,17 +627,9 @@ section h2 {
 
 .stage.is-fallback .stage-bar {
     position: static;
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "name filters";
+    display: flex;
+    justify-content: flex-end;
     margin-bottom: 32px;
-}
-
-.stage.is-fallback .stage-name {
-    grid-area: name;
-}
-
-.stage.is-fallback .filters {
-    grid-area: filters;
 }
 
 .grid {
@@ -860,25 +897,25 @@ footer {
 
     /* barra do palco empilhada */
     .stage-bar {
-        grid-template-columns: 1fr auto;
-        grid-template-areas:
-            "nav nav"
-            "name filters";
-        row-gap: 16px;
+        grid-template-columns: 1fr;
+        row-gap: 8px;
         bottom: 24px;
     }
 
-    .stage-nav {
-        grid-area: nav;
+    .stage-nav,
+    .filters {
+        grid-column: 1;
+        grid-row: auto;
         justify-self: center;
     }
 
-    .stage-name {
-        grid-area: name;
+    /* no celular a rolagem já é natural */
+    .stage-scroll {
+        display: none;
     }
 
     .filters {
-        grid-area: filters;
+        justify-content: center;
         gap: 0 16px;
     }
 
@@ -903,19 +940,28 @@ footer {
         padding: 12px var(--gutter);
     }
 
+    .brand-name {
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+    }
+
+    .brand-sub {
+        letter-spacing: 0.28em;
+    }
+
     .nav-links {
         gap: 16px;
+    }
+
+    /* o nome já leva para a galeria no topo */
+    .nav-links li:first-child {
+        display: none;
     }
 
     .nav-links a {
         font-size: 0.7rem;
         letter-spacing: 0.1em;
-    }
-
-    .stage-name h1 {
-        font-size: 1.1rem;
-        letter-spacing: 0.08em;
-        white-space: nowrap;
     }
 
     /* local e data em linhas separadas */
@@ -925,10 +971,6 @@ footer {
 
     .caption-location:not([hidden]) + .caption-date::before {
         content: none;
-    }
-
-    .stage-name p {
-        letter-spacing: 0.25em;
     }
 
     .caption-title {

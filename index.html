@@ -14,7 +14,7 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
@@ -48,7 +48,10 @@
 
     <!-- NAVEGAÇÃO -->
     <nav>
-        <a class="nav-logo" href="#top" aria-label="Buzzi Photos, back to top"><span class="nav-logo-word">Buzzi</span></a>
+        <a class="nav-brand" href="#top" aria-label="Gabriel Buzzi Photography, back to top">
+            <span class="brand-name">Gabriel Buzzi</span>
+            <span class="brand-sub">Photography</span>
+        </a>
         <ul class="nav-links">
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#about">About</a></li>
@@ -61,6 +64,7 @@
 
         <!-- GALLERY (filmstrip em tela cheia; vira grade se o JS do carrossel falhar) -->
         <section id="gallery" class="stage">
+            <h1 class="visually-hidden">Gabriel Buzzi Photography</h1>
             <h2 class="visually-hidden">Gallery</h2>
 
             <div class="stage-carousel" tabindex="0" role="region" aria-roledescription="carousel"
@@ -79,11 +83,6 @@
             <button type="button" class="stage-close" hidden>Close</button>
 
             <div class="stage-bar">
-                <div class="stage-name">
-                    <h1>Gabriel Buzzi</h1>
-                    <p>Photography</p>
-                </div>
-
                 <div class="stage-nav" hidden>
                     <button type="button" class="stage-arrow" id="stage-prev" aria-label="Previous photo">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" /></svg>
@@ -101,6 +100,11 @@
                     <button type="button" class="filter-btn" data-filter="cars" aria-pressed="false">Cars</button>
                     <button type="button" class="filter-btn" data-filter="sports" aria-pressed="false">Sports</button>
                 </div>
+
+                <a class="stage-scroll" href="#about">
+                    Scroll
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6" /></svg>
+                </a>
             </div>
 
             <!-- GRADE (fallback) -->
