@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Buzzi Photos</title>
     <meta name="description" content="Photography by Gabriel Buzzi — animals, sports, nature and travel." />
+    <meta name="theme-color" content="#0a0a0a" />
     <meta property="og:title" content="Buzzi Photos" />
     <meta property="og:description" content="Photography by Gabriel Buzzi — animals, sports, nature and travel." />
     <meta property="og:image" content="https://res.cloudinary.com/dtvmwampt/image/upload/v1777678237/sqr1_ey31jn.jpg" />
@@ -13,20 +14,41 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
     <link rel="manifest" href="favicon/site.webmanifest" />
+    <link rel="preconnect" href="https://res.cloudinary.com" />
+    <script>
+        // marca que o JS está ativo e liga o intro (exceto com "reduzir movimento")
+        (function () {
+            var root = document.documentElement;
+            root.classList.add('js');
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                root.classList.add('intro-active');
+                // segurança: se o intro.js falhar, a página aparece mesmo assim
+                setTimeout(function () { root.classList.remove('intro-active'); }, 5000);
+            }
+        })();
+    </script>
 </head>
 
 <body>
 
+    <!-- FUNDO AURORA -->
+    <canvas id="aurora" aria-hidden="true"></canvas>
+
+    <!-- INTRO -->
+    <div id="intro" aria-hidden="true">
+        <span class="intro-word">Gabriel</span>
+    </div>
+
     <!-- NAVEGAÇÃO -->
     <nav>
-        <div class="nav-logo">Buzzi</div>
+        <a class="nav-logo" href="#top" aria-label="Buzzi Photos, back to top"><span class="nav-logo-word">Buzzi</span></a>
         <ul class="nav-links">
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#about">About</a></li>
@@ -35,67 +57,104 @@
         </ul>
     </nav>
 
-    <!-- HERO (tela de entrada) -->
-    <section id="hero">
-        <h1>Gabriel Buzzi</h1>
-        <p>Photography</p>
-    </section>
+    <main id="top">
 
+        <!-- GALLERY (filmstrip em tela cheia; vira grade se o JS do carrossel falhar) -->
+        <section id="gallery" class="stage">
+            <h2 class="visually-hidden">Gallery</h2>
 
-    <!-- GALLERY -->
-    <section id="gallery">
-        <h2>Gallery</h2>
-
-        <!-- FILTERS -->
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="animals">Animals</button>
-            <button class="filter-btn" data-filter="nature">Nature</button>
-            <button class="filter-btn" data-filter="cars">Cars</button>
-            <button class="filter-btn" data-filter="sports">Sports</button>
-        </div>
-
-        <!-- GRID -->
-        <div class="grid"></div>
-    </section>
-
-    <!-- GEAR -->
-    <section id="gear">
-        <h2>Gear</h2>
-        <div class="gear-grid">
-            <div class="gear-item">
-                <h3>Camera</h3>
-                <p>Canon EOS R50</p>
+            <div class="stage-carousel" tabindex="0" role="region" aria-roledescription="carousel"
+                aria-label="Photo carousel. Use the arrow keys to browse and Enter to enlarge a photo.">
+                <div class="strip-mount"></div>
+                <div class="strip-cursor" aria-hidden="true">View</div>
             </div>
-            <div class="gear-item">
-                <h3>Lenses</h3>
-                <p>Canon RF 100–400mm F5.6-8 IS USM<br>Canon RF 50mm F1.8 STM<br>Canon RF-S18-45mm F4.5-6.3 IS STM</p>
+
+            <p class="visually-hidden" id="stage-live" aria-live="polite"></p>
+
+            <div class="stage-caption" aria-hidden="true">
+                <p class="caption-title"></p>
+                <p class="caption-meta"><span class="caption-location"></span><span class="caption-date"></span></p>
             </div>
-        </div>
-    </section>
 
-    <!-- SOBRE -->
-    <section id="about">
-        <h2>About</h2>
-        <p>Passionate photographer with a deep appreciation for the nature, sports, cars and travel.</p>
-    </section>
+            <button type="button" class="stage-close" hidden>Close</button>
 
-    <!-- CONTATO -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact-links">
-            <a href="mailto:buzzifotografia@gmail.com">buzzifotografia@gmail.com</a>
-            <a href="https://instagram.com/buzziphotos" target="_blank" rel="noopener">@buzziphotos</a>
-        </div>
-    </section>
+            <div class="stage-bar">
+                <div class="stage-name">
+                    <h1>Gabriel Buzzi</h1>
+                    <p>Photography</p>
+                </div>
 
-    <!-- LIGHTBOX -->
-    <div id="lightbox">
-        <button id="lightbox-close">&times;</button>
-        <button class="lightbox-nav" id="lightbox-prev">&#8592;</button>
-        <button class="lightbox-nav" id="lightbox-next">&#8594;</button>
+                <div class="stage-nav" hidden>
+                    <button type="button" class="stage-arrow" id="stage-prev" aria-label="Previous photo">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" /></svg>
+                    </button>
+                    <p class="stage-counter" aria-hidden="true"><span class="counter-current">01</span> / <span class="counter-total">01</span></p>
+                    <button type="button" class="stage-arrow" id="stage-next" aria-label="Next photo">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" /></svg>
+                    </button>
+                </div>
+
+                <div class="filters" role="group" aria-label="Filter photos">
+                    <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                    <button type="button" class="filter-btn" data-filter="animals" aria-pressed="false">Animals</button>
+                    <button type="button" class="filter-btn" data-filter="nature" aria-pressed="false">Nature</button>
+                    <button type="button" class="filter-btn" data-filter="cars" aria-pressed="false">Cars</button>
+                    <button type="button" class="filter-btn" data-filter="sports" aria-pressed="false">Sports</button>
+                </div>
+            </div>
+
+            <!-- GRADE (fallback) -->
+            <div class="grid" aria-busy="true"></div>
+            <p class="grid-status" role="status">Loading photos…</p>
+            <noscript><p class="grid-status is-error">The gallery needs JavaScript to load.</p></noscript>
+        </section>
+
+        <!-- SOBRE -->
+        <section id="about">
+            <h2>About</h2>
+            <p>Passionate photographer with a deep appreciation for nature, sports, cars and travel.</p>
+        </section>
+
+        <!-- GEAR -->
+        <section id="gear">
+            <h2>Gear</h2>
+            <dl class="gear-grid">
+                <div class="gear-item">
+                    <dt>Camera</dt>
+                    <dd>Canon EOS R50</dd>
+                </div>
+                <div class="gear-item">
+                    <dt>Lenses</dt>
+                    <dd>Canon RF 100–400mm F5.6–8 IS USM</dd>
+                    <dd>Canon RF 50mm F1.8 STM</dd>
+                    <dd>Canon RF-S 18–45mm F4.5–6.3 IS STM</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-links">
+                <a href="mailto:buzzifotografia@gmail.com">buzzifotografia@gmail.com</a>
+                <a href="https://instagram.com/buzziphotos" target="_blank" rel="noopener">@buzziphotos</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- LIGHTBOX (usado pela grade de fallback) -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <button type="button" id="lightbox-close" aria-label="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" /></svg>
+        </button>
+        <button type="button" class="lightbox-nav" id="lightbox-prev" aria-label="Previous photo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" /></svg>
+        </button>
+        <button type="button" class="lightbox-nav" id="lightbox-next" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" /></svg>
+        </button>
         <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="" />
             <div class="lightbox-info">
                 <span id="lightbox-counter"></span>
                 <span id="lightbox-location"></span>
@@ -113,6 +172,9 @@
         </div>
     </footer>
 
+    <script src="js/aurora.js"></script>
+    <script src="js/intro.js"></script>
+    <script src="js/filmstrip.js"></script>
     <script src="js/main.js"></script>
 </body>
 
